@@ -96,14 +96,7 @@ const Login = () => {
               actions.setSubmitting(false);
             }}
           >
-            {({
-              values,
-              isSubmitting,
-              handleChange,
-              handleBlur,
-              touched,
-              errors,
-            }) => (
+            {({ values, handleChange, handleBlur, touched, errors }) => (
               <Form>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                   <TextField
