@@ -10,7 +10,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import MenuListItems from "../components/MenuListItems";
-import { blueGrey } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 import useAuthCalls from "../hooks/useAuthCalls";
 import { Outlet } from "react-router-dom";
@@ -92,7 +91,7 @@ function Dashboard(props) {
           }}
           PaperProps={{
             sx: {
-              backgroundColor: blueGrey[900],
+              backgroundColor: "#212121",
             },
           }}
         >
@@ -109,7 +108,7 @@ function Dashboard(props) {
           }}
           PaperProps={{
             sx: {
-              backgroundColor: blueGrey[900],
+              backgroundColor: "#212121",
             },
           }}
           open
