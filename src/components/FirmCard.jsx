@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
-import { btnHoverStyle } from "../styles/globalStyle";
+import { btnHoverStyle, flex } from "../styles/globalStyle";
 import useStockCalls from "../hooks/useStockCalls";
 
 export default function FirmCard({ firm, setOpen, setInfo }) {
@@ -40,7 +40,7 @@ export default function FirmCard({ firm, setOpen, setInfo }) {
           sx={{ p: 1, objectFit: "contain", height: "150px" }}
         />
       </CardContent>
-      <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+      <CardActions sx={flex}>
         <EditIcon
           sx={btnHoverStyle}
           onClick={() => {

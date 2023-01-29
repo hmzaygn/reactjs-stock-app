@@ -1,6 +1,6 @@
 export const btnHoverStyle = {
   cursor: "pointer",
-  transition: "all .3s",
+  transition: "all .5s",
   "&:hover": { color: "red" },
 };
 
@@ -20,4 +20,20 @@ export const flexCenter = {
   display: "flex",
   flexDirection: "column",
   gap: 2,
+};
+
+export const arrowStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  cursor: "pointer",
+  transition: "all .3s",
+  "&:hover": { color: "red" },
+};
+
+export const flex = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: 1,
 };

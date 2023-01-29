@@ -32,7 +32,7 @@ const Firms = () => {
       <FirmModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
 
       {firms?.length > 0 && (
-        <Grid container justifyContent="center" gap={3}>
+        <Grid container justifyContent="center" gap={3} sx={{ mt: 4 }}>
           {firms?.map((firm) => (
             <Grid item key={firm.id}>
               <FirmCard firm={firm} setOpen={setOpen} setInfo={setInfo} />
