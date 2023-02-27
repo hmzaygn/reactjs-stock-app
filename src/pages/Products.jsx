@@ -14,6 +14,7 @@ import UpgradeIcon from "@mui/icons-material/Upgrade";
 import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
 import { useEffect, useState } from "react";
 import useStockCalls from "../hooks/useStockCalls";
+import useSortColumn from "../hooks/useSortColumn";
 import { useSelector } from "react-redux";
 import { arrowStyle, btnHoverStyle } from "../styles/globalStyle";
 
@@ -23,21 +24,23 @@ const Products = () => {
 
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
-  const [toggle, setToggle] = useState({
-    brand: false,
-    name: false,
+
+  const columnObj = {
+    brand: 1,
+    name: 1,
     stock: 1,
-  });
+  };
+
+  const { handleSort, sortedData, columns } = useSortColumn(
+    products,
+    columnObj
+  );
 
   useEffect(() => {
     getProducts();
     getBrands();
     getCategories();
   }, []);
-
-  const handleSortNumber = (arg) => {
-    setToggle({ ...toggle, [arg]: toggle[arg] * -1 });
-  };
 
   return (
     <Box>
@@ -51,7 +54,7 @@ const Products = () => {
 
       {/* <ProductModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} /> */}
 
-      {products?.length > 0 && (
+      {sortedData?.length > 0 && (
         <TableContainer component={Paper} sx={{ mt: 4 }} elevation={10}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -59,34 +62,40 @@ const Products = () => {
                 <TableCell align="center">#</TableCell>
                 <TableCell align="center">Category</TableCell>
                 <TableCell align="center">
-                  <Box sx={arrowStyle}>
+                  <Box
+                    sx={arrowStyle}
+                    onClick={() => handleSort("brand", "text")}
+                  >
                     <div>Brand</div>
-                    {true && <UpgradeIcon />}
-                    {false && <VerticalAlignBottomIcon />}
-                  </Box>
-                </TableCell>
-                <TableCell align="center">
-                  <Box sx={arrowStyle}>
-                    <div>Name</div>
-                    {true && <UpgradeIcon />}
-                    {false && <VerticalAlignBottomIcon />}
+                    {columns.brand === 1 && <UpgradeIcon />}
+                    {columns.brand !== 1 && <VerticalAlignBottomIcon />}
                   </Box>
                 </TableCell>
                 <TableCell align="center">
                   <Box
                     sx={arrowStyle}
-                    onClick={() => handleSortNumber("stock")}
+                    onClick={() => handleSort("name", "text")}
+                  >
+                    <div>Name</div>
+                    {columns.name === 1 && <UpgradeIcon />}
+                    {columns.name !== 1 && <VerticalAlignBottomIcon />}
+                  </Box>
+                </TableCell>
+                <TableCell align="center">
+                  <Box
+                    sx={arrowStyle}
+                    onClick={() => handleSort("stock", "number")}
                   >
                     <div>Stock</div>
-                    {toggle.stock === 1 && <UpgradeIcon />}
-                    {toggle.stock !== 1 && <VerticalAlignBottomIcon />}
+                    {columns.stock === 1 && <UpgradeIcon />}
+                    {columns.stock !== 1 && <VerticalAlignBottomIcon />}
                   </Box>
                 </TableCell>
                 <TableCell align="center">Operation</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {products.map((product, index) => (
+              {sortedData?.map((product, index) => (
                 <TableRow
                   key={product.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
