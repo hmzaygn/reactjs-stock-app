@@ -18,7 +18,8 @@ export const modalStyle = {
 
 export const flexCenter = {
   display: "flex",
-  flexDirection: "column",
+  flexDirection: { xs: "column", md: "row" },
+  justifyContent: "center",
   gap: 2,
 };
 
@@ -33,6 +34,14 @@ export const arrowStyle = {
 
 export const flex = {
   display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: 1,
+};
+
+export const flexRow = {
+  display: "flex",
+  flexDirection: "row",
   justifyContent: "center",
   alignItems: "center",
   gap: 1,

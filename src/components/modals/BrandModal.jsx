@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
-import { flexCenter, modalStyle } from "../../styles/globalStyle";
+import { flexColumn, modalStyle } from "../../styles/globalStyle";
 import useStockCalls from "../../hooks/useStockCalls";
 
 export default function BrandModal({ open, setOpen, info, setInfo }) {
@@ -37,7 +37,7 @@ export default function BrandModal({ open, setOpen, info, setInfo }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box component="form" onSubmit={handleSubmit} sx={flexCenter}>
+          <Box component="form" onSubmit={handleSubmit} sx={flexColumn}>
             <TextField
               label="Brand Name"
               name="name"
