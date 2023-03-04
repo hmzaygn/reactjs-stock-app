@@ -17,9 +17,11 @@ import useStockCalls from "../hooks/useStockCalls";
 import useSortColumn from "../hooks/useSortColumn";
 import { useSelector } from "react-redux";
 import { arrowStyle, btnHoverStyle } from "../styles/globalStyle";
+import ProductModal from "../components/modals/ProductModal";
 
 const Products = () => {
-  const { getProducts, getCategories, getBrands } = useStockCalls();
+  const { getProducts, getCategories, getBrands, deleteProduct } =
+    useStockCalls();
   const { products } = useSelector((state) => state.stock);
 
   const [open, setOpen] = useState(false);
@@ -52,7 +54,12 @@ const Products = () => {
         New Product
       </Button>
 
-      {/* <ProductModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} /> */}
+      <ProductModal
+        open={open}
+        setOpen={setOpen}
+        info={info}
+        setInfo={setInfo}
+      />
 
       {sortedData?.length > 0 && (
         <TableContainer component={Paper} sx={{ mt: 4 }} elevation={10}>
@@ -108,7 +115,10 @@ const Products = () => {
                   <TableCell align="center">{product.name}</TableCell>
                   <TableCell align="center">{product.stock}</TableCell>
                   <TableCell align="center">
-                    <DeleteForeverIcon sx={btnHoverStyle} />
+                    <DeleteForeverIcon
+                      sx={btnHoverStyle}
+                      onClick={() => deleteProduct(product.id)}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

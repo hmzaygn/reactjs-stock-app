@@ -37,3 +37,9 @@ export const flex = {
   alignItems: "center",
   gap: 1,
 };
+
+export const flexColumn = {
+  display: "flex",
+  flexDirection: "column",
+  gap: 2,
+};
