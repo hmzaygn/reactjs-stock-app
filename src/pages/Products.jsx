@@ -18,7 +18,6 @@ import useSortColumn from "../hooks/useSortColumn";
 import { useSelector } from "react-redux";
 import { arrowStyle, btnHoverStyle, flexCenter } from "../styles/globalStyle";
 import ProductModal from "../components/modals/ProductModal";
-// import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
 import {
   FormControl,
   InputLabel,
@@ -28,8 +27,13 @@ import {
 } from "@mui/material";
 
 const Products = () => {
-  const { getProducts, getCategories, getBrands, deleteProduct } =
-    useStockCalls();
+  const {
+    getProducts,
+    getCategories,
+    getBrands,
+    getProCatBrands,
+    deleteProduct,
+  } = useStockCalls();
   const { products, brands } = useSelector((state) => state.stock);
 
   const [open, setOpen] = useState(false);
@@ -68,9 +72,10 @@ const Products = () => {
   };
 
   useEffect(() => {
-    getProducts();
-    getBrands();
-    getCategories();
+    // getProducts();
+    // getBrands();
+    // getCategories();
+    getProCatBrands();
   }, []);
 
   return (
@@ -102,7 +107,7 @@ const Products = () => {
         </FormControl>
 
         <FormControl sx={{ flexGrow: 1 }}>
-          <InputLabel id="demo-multiple-name-label">Product</InputLabel>
+          <InputLabel id="demo-multiple-name-label">Products</InputLabel>
           <Select
             labelId="demo-multiple-name-label"
             id="demo-multiple-name"
