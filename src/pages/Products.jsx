@@ -27,13 +27,7 @@ import {
 } from "@mui/material";
 
 const Products = () => {
-  const {
-    getProducts,
-    getCategories,
-    getBrands,
-    getProCatBrands,
-    deleteProduct,
-  } = useStockCalls();
+  const { getProCatBrands, deleteProduct } = useStockCalls();
   const { products, brands } = useSelector((state) => state.stock);
 
   const [open, setOpen] = useState(false);
@@ -72,9 +66,6 @@ const Products = () => {
   };
 
   useEffect(() => {
-    // getProducts();
-    // getBrands();
-    // getCategories();
     getProCatBrands();
   }, []);
 
