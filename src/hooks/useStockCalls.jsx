@@ -1,18 +1,20 @@
+// import { axiosWithToken } from "../service/axiosInstance";
 import { useDispatch } from "react-redux";
 import {
   fetchFail,
   fetchStart,
   getSuccess,
   getProCatBrandsSuccess,
+  getAllStockSuccess,
 } from "../features/stockSlice";
-import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import useAxios from "./useAxios";
+import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
 const useStockCalls = () => {
   const dispatch = useDispatch();
   const { axiosWithToken } = useAxios();
 
-  //! ***** GET CALLS *****
+  //!------------- GET CALLS ----------------
   const getStockData = async (url) => {
     dispatch(fetchStart());
     try {
@@ -26,9 +28,9 @@ const useStockCalls = () => {
 
   const getFirms = () => getStockData("firms");
   const getSales = () => getStockData("sales");
+  const getCategories = () => getStockData("categories");
   const getBrands = () => getStockData("brands");
   const getProducts = () => getStockData("products");
-  const getCategories = () => getStockData("categories");
   const getPurchases = () => getStockData("purchases");
 
   const getProCatBrands = async () => {
@@ -49,23 +51,52 @@ const useStockCalls = () => {
     }
   };
 
-  //! ***** DELETE CALLS *****
+  const getAllStockData = async () => {
+    dispatch(fetchStart());
+    try {
+      const [purchases, firms, brands, sales, products, categories] =
+        await Promise.all([
+          axiosWithToken.get("/stock/purchases"),
+          axiosWithToken.get("/stock/firms"),
+          axiosWithToken.get("/stock/brands"),
+          axiosWithToken.get("/stock/sales"),
+          axiosWithToken.get("/stock/products"),
+          axiosWithToken.get("/stock/categories"),
+        ]);
+      dispatch(
+        getAllStockSuccess([
+          purchases.data,
+          firms.data,
+          brands.data,
+          sales.data,
+          products.data,
+          categories.data,
+        ])
+      );
+    } catch (err) {
+      dispatch(fetchFail());
+    }
+  };
+
+  //!------------- DELETE CALLS ----------------
   const deleteStockData = async (url, id) => {
     try {
       await axiosWithToken.delete(`stock/${url}/${id}/`);
-      toastSuccessNotify(`${url} is succefully deleted`);
+      toastSuccessNotify(`${url} successfuly deleted`);
       getStockData(url);
     } catch (error) {
       console.log(error);
-      toastErrorNotify(`${url} couldn't deleted`);
+      toastErrorNotify(`${url} can not be deleted`);
     }
   };
 
   const deleteFirm = (id) => deleteStockData("firms", id);
   const deleteBrand = (id) => deleteStockData("brands", id);
+  const deleteSale = (id) => deleteStockData("sales", id);
   const deleteProduct = (id) => deleteStockData("products", id);
+  const deletePurchase = (id) => deleteStockData("purchases", id);
 
-  //! ***** POST CALLS *****
+  //!------------- POST CALLS ----------------
   const postStockData = async (info, url) => {
     try {
       await axiosWithToken.post(`stock/${url}/`, info);
@@ -80,8 +111,10 @@ const useStockCalls = () => {
   const postFirm = (info) => postStockData(info, "firms");
   const postBrand = (info) => postStockData(info, "brands");
   const postProduct = (info) => postStockData(info, "products");
+  const postSale = (info) => postStockData(info, "sales");
+  const postPurchase = (info) => postStockData(info, "purchases");
 
-  //! ***** POST CALLS *****
+  //!------------- PUT CALLS ----------------
   const putStockData = async (info, url) => {
     try {
       await axiosWithToken.put(`stock/${url}/${info.id}/`, info);
@@ -95,25 +128,35 @@ const useStockCalls = () => {
 
   const putFirm = (info) => putStockData(info, "firms");
   const putBrand = (info) => putStockData(info, "brands");
-  const putProduct = (info) => putStockData(info, "products");
+  const putSale = (info) => putStockData(info, "sales");
+  const putPurchase = (info) => putStockData(info, "purchases");
 
   return {
+    getStockData,
     getFirms,
     getSales,
-    getBrands,
-    getProducts,
     getCategories,
-    getPurchases,
+    getProducts,
     getProCatBrands,
+    getBrands,
+    getPurchases,
+    getAllStockData,
     deleteFirm,
     deleteBrand,
     deleteProduct,
+    deleteSale,
+    deletePurchase,
     postFirm,
+    postStockData,
     postBrand,
     postProduct,
+    postSale,
+    postPurchase,
     putFirm,
+    putStockData,
     putBrand,
-    putProduct,
+    putSale,
+    putPurchase,
   };
 };
 
