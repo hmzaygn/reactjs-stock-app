@@ -15,7 +15,7 @@ const useAuthCalls = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const BASE_URL = "https://13659.fullstack.clarusway.com/";
+  const BASE_URL = "http://127.0.0.1:8000/";
 
   const login = async (userInfo) => {
     dispatch(fetchStart());
