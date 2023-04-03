@@ -54,7 +54,10 @@ const PurchasesTable = ({
         <TableHead>
           <TableRow>
             <TableCell>
-              <Box sx={arrowStyle} onClick={() => handleSort("created")}>
+              <Box
+                sx={arrowStyle}
+                onClick={() => handleSort("created", "date")}
+              >
                 <Typography variant="body" noWrap>
                   Date
                 </Typography>
