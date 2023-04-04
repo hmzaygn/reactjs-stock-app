@@ -25,6 +25,7 @@ import {
   OutlinedInput,
   Select,
 } from "@mui/material";
+import ProductsTable from "../components/tables/ProductsTable";
 
 const Products = () => {
   const { getProCatBrands, deleteProduct } = useStockCalls();
@@ -124,72 +125,10 @@ const Products = () => {
       />
 
       {sortedData?.length > 0 && (
-        <TableContainer component={Paper} sx={{ mt: 4 }} elevation={10}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">#</TableCell>
-                <TableCell align="center">Category</TableCell>
-                <TableCell align="center">
-                  <Box
-                    sx={arrowStyle}
-                    onClick={() => handleSort("brand", "text")}
-                  >
-                    <div>Brand</div>
-                    {columns.brand === 1 && <UpgradeIcon />}
-                    {columns.brand !== 1 && <VerticalAlignBottomIcon />}
-                  </Box>
-                </TableCell>
-                <TableCell align="center">
-                  <Box
-                    sx={arrowStyle}
-                    onClick={() => handleSort("name", "text")}
-                  >
-                    <div>Name</div>
-                    {columns.name === 1 && <UpgradeIcon />}
-                    {columns.name !== 1 && <VerticalAlignBottomIcon />}
-                  </Box>
-                </TableCell>
-                <TableCell align="center">
-                  <Box
-                    sx={arrowStyle}
-                    onClick={() => handleSort("stock", "number")}
-                  >
-                    <div>Stock</div>
-                    {columns.stock === 1 && <UpgradeIcon />}
-                    {columns.stock !== 1 && <VerticalAlignBottomIcon />}
-                  </Box>
-                </TableCell>
-                <TableCell align="center">Operation</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {sortedData
-                ?.filter((item) => isBrandSelected(item))
-                ?.filter((item) => isProductSelected(item))
-                .map((product, index) => (
-                  <TableRow
-                    key={product.id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell align="center" component="th" scope="row">
-                      {index + 1}
-                    </TableCell>
-                    <TableCell align="center">{product.category}</TableCell>
-                    <TableCell align="center">{product.brand}</TableCell>
-                    <TableCell align="center">{product.name}</TableCell>
-                    <TableCell align="center">{product.stock}</TableCell>
-                    <TableCell align="center">
-                      <DeleteForeverIcon
-                        sx={btnHoverStyle}
-                        onClick={() => deleteProduct(product.id)}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <ProductsTable
+          selectedProducts={selectedProducts}
+          selectedBrands={selectedBrands}
+        />
       )}
     </Box>
   );

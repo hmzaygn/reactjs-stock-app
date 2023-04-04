@@ -43,15 +43,7 @@ const SalesTable = ({ setOpen, setInfo, selectedProducts, selectedBrands }) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>
-              <Box sx={arrowStyle} onClick={() => handleSort("created")}>
-                <Typography variant="body" noWrap>
-                  Date
-                </Typography>
-                {columns.created === 1 && <UpgradeIcon />}
-                {columns.created !== 1 && <VerticalAlignBottomIcon />}
-              </Box>
-            </TableCell>
+            <TableCell align="center">Date</TableCell>
             <TableCell align="center">Category</TableCell>
             <TableCell align="center">
               <Box sx={arrowStyle} onClick={() => handleSort("brand")}>

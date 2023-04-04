@@ -47,7 +47,7 @@ const icons = [
   {
     icon: <SupervisorAccountIcon />,
     title: "Admin Panel",
-    url: "http://127.0.0.1:8000/admin/",
+    url: "https://hmzaygn.pythonanywhere.com/admin/",
   },
 ];
 

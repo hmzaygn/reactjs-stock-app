@@ -53,18 +53,7 @@ const PurchasesTable = ({
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>
-              <Box
-                sx={arrowStyle}
-                onClick={() => handleSort("created", "date")}
-              >
-                <Typography variant="body" noWrap>
-                  Date
-                </Typography>
-                {columns.created === 1 && <UpgradeIcon />}
-                {columns.created !== 1 && <VerticalAlignBottomIcon />}
-              </Box>
-            </TableCell>
+            <TableCell align="center">Date</TableCell>
             <TableCell align="center">Category</TableCell>
             <TableCell align="center">
               <Box sx={arrowStyle} onClick={() => handleSort("firm")}>

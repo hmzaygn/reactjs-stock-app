@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const BASE_URL = "http://127.0.0.1:8000/";
+const BASE_URL = "https://hmzaygn.pythonanywhere.com/";
 
 export const axiosPublic = axios.create({
   baseURL: BASE_URL,

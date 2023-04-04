@@ -35,8 +35,6 @@ export default function ModalSale({ open, setOpen, info, setInfo }) {
     setInfo({});
   };
 
-  console.log(info);
-
   return (
     <Modal
       open={open}
