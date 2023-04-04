@@ -1,29 +1,16 @@
-# Redux Toolkit Ornegi
+# Stock App
 
-## `Kurulum`
+An app for keeping track of sales, purchases and products in stock.
 
-```
-npm install veya yarn
-```
+### For testing CRUD you can use the account below or request permissions from admin otherwise you will only have read only permissions:
+Email : product@manager.com
+Password : Product123.
 
-## `Kullanilan Kutuphaneler`
+### For backend I used Django. You can see documents here:
+https://hmzaygn.pythonanywhere.com/redoc/
 
-- `@reduxjs/toolkit`
-- `react-redux`
-- `axios`
-- `react-router-dom`
-- `@mui/material-ui`
-- `@emotion/react`
-- `@emotion/styled`
+### Endpoints here:
+https://hmzaygn.pythonanywhere.com/swagger/
 
-## `Kullanilacak API`:
-
-- https://newsapi.org/
-  (Get Key butonuna tiklanarak key alinabilir)
-
-- URL:
-  const url = `https://newsapi.org/v2/top-headlines?country=tr&apiKey=${API_KEY}`;
-
-## `Kullanilacak Araclar`
-
-- `Redux Dev Tools` : Chrome uzerinde calisan ve global state uzerinde yapilan tum degisikliklerin takip edilmesini saglayan tarayici uzantisidir. Indirmek icin [tiklayiniz.](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?utm_source=chrome-ntp-icon)`
+### You can checkout final product here:
+https://reactjs-stock-app.vercel.app/
